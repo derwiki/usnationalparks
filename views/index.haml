@@ -7,7 +7,15 @@
     %meta{ content: "", name: "author" }
     %meta{ content: "3 days", name: "revisit-after" }
     %link{ href: "http://creativecommons.org/licenses/by/3.0/", rel: "license", title: "Creative Commons Attribution 3.0 Unported License" }
-  %body
+    :css
+      #map {
+        height: 500px;
+      }
+  %body{ data: body_data }
+
+    .container
+      .row
+        #map.col-xs-12
 
     .container
       .row
@@ -17,3 +25,35 @@
             %h4= row['Location']
             %p= row['Description']
             %p #{ row['Latitude'] }, #{ row['Longitude'] }
+
+    %script{ src: "http://code.jquery.com/jquery-3.1.0.slim.js" }
+    %script{ src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCVUpFTv-hVgrS4VzyC8uOUYsBoWX_VbNU" }
+    :javascript
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 37.0902, lng: -95.7129},
+          zoom: 4
+        });
+        var park, parks = $('body').data('parks');
+
+        var newMarker = function(park) {
+          new google.maps.Marker({
+            position: { lat: parseFloat(park.lat), lng: parseFloat(park.lng) },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: title
+          });
+        };
+
+        for (var i = 0; i < parks.length; i++) {
+          park = parks[i];
+
+          var infowindow = new google.maps.InfoWindow({
+            content: "<span style='font-size: 10px'>"+park.title+"</span>",
+            position: { lat: parseFloat(park.lat), lng: parseFloat(park.lng) },
+          });
+          infowindow.open(map);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", initMap);

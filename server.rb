@@ -1,20 +1,28 @@
 # require 'dotenv'
 # Dotenv.load
 
-require 'csv'
 require 'sinatra'
 require 'haml'
-# require 'json'
+require 'json'
 # require 'active_support/core_ext/hash'
 # require 'active_support/core_ext/string'
+require_relative 'lib/parks'
 
 get '/' do
-  lines = []
-  CSV.foreach(File.open('data/parks.csv'), headers: true).each do |line|
-    lines << line.to_hash
-  end
-
-
-  haml :index, locals: { lines: lines }
+  parks = Parks.all
+  haml :index, locals: { lines: parks, body_data: body_data }
 end
 
+def body_data
+ {
+   parks:
+     JSON.dump(Parks.all.map do |park|
+       {
+        lat: park['Latitude'],
+        lng: park['Longitude'],
+        title: park['Name']
+       }
+     end
+   )
+ }
+end
