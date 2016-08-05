@@ -15,12 +15,13 @@ end
 
 def body_data
  {
-   parks:
+   parks: 
      JSON.dump(Parks.all.map do |park|
        {
         lat: park['Latitude'],
         lng: park['Longitude'],
-        title: park['Name']
+        title: park['Name'],
+        underscored_title: park['underscored_title']
        }
      end
    )

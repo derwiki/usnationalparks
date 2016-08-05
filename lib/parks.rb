@@ -7,8 +7,11 @@ class Parks
 
       parks = []
       CSV.foreach(File.open('data/parks.csv'), headers: true).each do |line|
-        parks << line.to_hash
+        park_hash = line.to_hash
+        park_hash['underscored_title'] = park_hash['Name'].downcase.gsub(/ /, ?_)
+        parks << park_hash
       end
+
       @parks = parks
     end
   end
