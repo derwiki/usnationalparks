@@ -13,6 +13,14 @@
       #map {
         height: 500px;
       }
+      .park {
+        text-align: center;
+      }
+      .park img {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+      }
   %body{ data: body_data }
 
     .container
@@ -20,14 +28,14 @@
         #map.col-xs-12
 
     .container
-      .row
-        - lines.each do |row|
-          .col-sm-4{ id: row['underscored_title'] }
-            %a{ name: "#{ row['Name'] }" }
-            %h3= row['Name']
-            %h4= row['Location']
-            %p= row['Description']
-            %p #{ row['Latitude'] }, #{ row['Longitude'] }
+      - lines.each_slice(3) do |line_slice|
+        .row
+          - line_slice.each do |park|
+            .col-sm-4.park{ id: park['underscored_title'] }
+              %a{ name: "#{ park['Name'] }" }
+              %h3= park['Name']
+              %h4= park['Location']
+              %p.text-left= park['Description']
 
     %script{ src: "https://code.jquery.com/jquery-3.1.0.min.js" }
     %script{ src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCVUpFTv-hVgrS4VzyC8uOUYsBoWX_VbNU" }
