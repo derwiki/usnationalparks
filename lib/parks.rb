@@ -14,5 +14,9 @@ class Parks
 
       @parks = parks
     end
+
+    def by_path(title)
+      all.find {|park| park['underscored_title'] == title}
+    end
   end
 end
