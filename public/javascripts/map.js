@@ -6,6 +6,7 @@ var googlemaps = {
     }
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.0902, lng: -95.7129},
+      scrollwheel: false,
       zoom: 4
     });
     var park, parks = $('body').data('parks');

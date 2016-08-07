@@ -8,7 +8,9 @@ def search_all
   File.open("data/instagram.csv", "w+") do |f|
     Parks.all.map do |park|
       r = search(park['name'])
-      map_url = r.split("\n").grep(%r[https://www.instagram.com/]).first
+      urls = r.split("\n").grep(%r[https://www.instagram.com/])
+      map_url = urls.find {|url| url =~ /nps/} ||
+                urls.find {|url| url =~ /explore/}
       puts map_url
       f.write("#{map_url}\n")
     end

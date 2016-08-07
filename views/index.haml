@@ -36,9 +36,15 @@
               %h3= park['name']
               %h4= park['location']
               %p.text-left= park['description']
-              %p.text-left
-                %a{ href: park['map_url'], target: :_blank } NPS Maps
+              .text-left
+                %a{ href: park['map_url'], target: :_blank }
+                  NPS Maps
+                  %i.fa.fa-external-link{ 'aria-hidden' => "true" }
+                %a{ href: park['instagram_url'], target: :_blank }
+                  Instagram
+                  %i.fa.fa-external-link{ 'aria-hidden' => "true" }
 
+    %script{ src: "//use.fontawesome.com/d3e1e34213.js" }
     %script{ src: "//code.jquery.com/jquery-3.1.0.min.js" }
     %script{ src: "javascripts/map.js" }
     %script{ src: "//maps.googleapis.com/maps/api/js?key=AIzaSyCVUpFTv-hVgrS4VzyC8uOUYsBoWX_VbNU&callback=googlemaps.initMap" }
