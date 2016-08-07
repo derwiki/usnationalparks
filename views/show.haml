@@ -20,27 +20,20 @@
         margin: 10px;
         border-radius: 3px;
       }
-  %body{ data: index_body_data }
+  %body{ data: show_body_data }
 
     .container
       .row
-        %h1.text-center Map of National Parks
-        #map.col-xs-12
+        %h2.text-center Map of National Parks
 
     .container
-      - lines.each_slice(3) do |line_slice|
-        .row
-          - line_slice.each do |park|
-            .col-sm-4.park{ id: park['underscored_title'] }
-              %a{ name: "#{ park['name'] }" }
-              %h3= park['name']
-              %h4= park['location']
-              %p.text-left= park['description']
-              %p.text-left
-                %a{ href: park['map_url'], target: :_blank } NPS Maps
+      .row
+        .col-sm-8.col-sm-offset-2.park{ id: park['underscored_title'] }
+          %a{ name: "#{ park['name'] }" }
+          %h3= park['name']
+          %h4= park['location']
+          %p.text-left= park['description']
 
     %script{ src: "//code.jquery.com/jquery-3.1.0.min.js" }
-    %script{ src: "//maps.googleapis.com/maps/api/js?key=AIzaSyCVUpFTv-hVgrS4VzyC8uOUYsBoWX_VbNU&callback=initMap" }
-    %script{ src: "javascripts/map.js" }
     %script{ src: "javascripts/flickr.js" }
     %script{ src: "javascripts/ga.js" }
