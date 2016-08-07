@@ -16,11 +16,14 @@ var flickr = {
       },
       function(data) {
         $.each(data.items, function(i, item){
+
+          var url = item.media.m.replace("_m.jpg", "_z.jpg");
+
           var $img = $("<img/>")
-            .attr("src", item.media.m)
+            .attr("src", url)
             .attr("title", item.title)
             .attr("alt", item.title);
-          var $link = $("<a class='flickr'/>")
+          var $link = $("<a/>")
             .attr("href", item.link)
             .html($img);
 

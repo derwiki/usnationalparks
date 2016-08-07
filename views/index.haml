@@ -26,11 +26,11 @@
               %h3= park['name']
               %h4= park['location']
               %p.text-left= park['description']
-              .text-left
+              .pull-left
                 %a{ href: park['map_url'], target: :_blank }
                   NPS Maps
                   %i.fa.fa-external-link{ 'aria-hidden' => "true" }
-              .text-left
+              .pull-right
                 %a{ href: park['instagram_url'], target: :_blank }
                   Instagram
                   %i.fa.fa-external-link{ 'aria-hidden' => "true" }
