@@ -28,9 +28,9 @@ end
 def park_data(park)
   return {} unless park
   {
-    lat: park['Latitude'],
-    lng: park['Longitude'],
-    title: park['Name'],
+    lat: park['latitude'],
+    lng: park['longitude'],
+    title: park['name'],
     underscored_title: park['underscored_title']
   }
 end

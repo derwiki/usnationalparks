@@ -32,10 +32,12 @@
         .row
           - line_slice.each do |park|
             .col-sm-4.park{ id: park['underscored_title'] }
-              %a{ name: "#{ park['Name'] }" }
-              %h3= park['Name']
-              %h4= park['Location']
-              %p.text-left= park['Description']
+              %a{ name: "#{ park['name'] }" }
+              %h3= park['name']
+              %h4= park['location']
+              %p.text-left= park['description']
+              %p.text-left
+                %a{ href: park['map_url'], target: :_blank } NPS Maps
 
     %script{ src: "//code.jquery.com/jquery-3.1.0.min.js" }
     %script{ src: "//maps.googleapis.com/maps/api/js?key=AIzaSyCVUpFTv-hVgrS4VzyC8uOUYsBoWX_VbNU" }
