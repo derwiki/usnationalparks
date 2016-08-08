@@ -29,7 +29,7 @@ var flickr = {
 
           $link.appendTo("#"+park.underscored_title);
 
-          if (i === 2) { return false; }
+          if (i === 3) { return false; }
         }.bind(this));
       }
     );
